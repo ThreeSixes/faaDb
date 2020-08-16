@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+    mongodb:
+        image: mongo:latest
+        expose:
+            - 27017
+        container_name: mongodb
+        volumes:
+            - "./faadb-data/mongo/db:/data/db"
+        restart: unless-stopped
+    faadb:
+        build: .
+        image: faadb:latest
+        ports:
+            - "8080:5000"
+        container_name: faadb
+        environment:
+            FLASK_HOST: "0.0.0.0"
+        depends_on:
+            - "mongodb"
+        restart: unless-stopped
