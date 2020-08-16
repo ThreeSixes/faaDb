@@ -58,21 +58,26 @@ The API is RESTful and exposes a limited number of endpoints. You can request ai
 ### ETL
 The ETL (Extract, Transform, Load) process executes the following steps:
 * The FAA aicraft database zip file is downloaded. See the `Additional Resources` section.
-* The zip file is extracted.
+* The zip file is extracted to a temporary file location.
 * The `MASTER.txt`, `ENGINE.txt`, and `ACFTREF.txt` files are loaded by `Pandas`.
 * The columns are manipulated to be suitable for merging and storage.
 * Engine and aicraft reference data are merged to the master data.
-* The resultant dataset is then loaded into a MongoDB staging collection.
-* Once the data has fully been loaded into the staging collection we check for an existing live collection. If it exists its deleted.
+* The temporary files are then deleted.
+* The merged dataset is then loaded into a MongoDB staging collection.
+* Once the data has fully been loaded into the staging collection we check for an existing live collection. If it exists it's deleted.
 * The staging collection is then renamed to be the live collection and is ready for queries.
 
 ### REST API
 The REST API leverages Flask to search the MongoDB for records on specific keys after validating the search parameters and retuns a JSON blob with either the aicraft information or a message about the status of the request. Successful requests for information result in HTTP `200` status codes. If the search terms or request are invalid a `400` is returned. In the event there is an invalid API endpoint or no data returned a `404` is returned. Unhandled exceptions result in HTTP `500`s.
 
-All requests are normalizd so they can be case insensitive. Both tail numbers and ICAO hex addresses are case insesitive.
+All API requests are normalized so they can be case insensitive.
 
 ## Query exmaples using CURL and jq
-Given an aircraft tail number of `N287AK`, ICAO hex address (`A2E806`) or integer address (`50564006`) we can look up aircraft information. These examples use `jq` to make the data more human-friendly.
+### Example prerequisites
+* This project is already set up and running. See `Prerequisites, Set-up, and basic operations` in this README.
+* [CURL](https://curl.haxx.se/download.html) is installed.
+* [jq](https://stedolan.github.io/jq/download/) is installed.
+Given an aircraft tail number of `N287AK`, ICAO hex address (`A2E806`) or integer address (`50564006`) we can look up aircraft information. These examples use `jq` to make the returned JSON data more human-friendly.
 Query by tail number:
 
 `curl http://127.0.0.1:8080/api/v1.0/tail-number/N287AK | jq .`
