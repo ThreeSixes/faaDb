@@ -24,8 +24,8 @@ This software is a Python application backed by MongoDB which can be used to que
 
 ### Initial installation and set up
 * Ensure the prerequisites have been met.
-* Clone this [repo](https://github.com/ThreeSixes/faaDb.git).
-* `cd` into this repo and run `docker-compose up --build` The application will restart by default along with the Docker daemon.
+* Clone this [repo](https://github.com/ThreeSixes/faaDb.git): `git clone https://github.com/ThreeSixes/faaDb.git`
+* `cd` into the freshly-cloned repo and run `docker-compose up --build`. The application will restart by default along with the Docker daemon.
 * After both containers build and start the web service should be listening for API requests on port `8080`.
 * You can use CURL to call the API and trigger the ETL process. This will take a few minutes to finish as there are about 250,000 registered aircraft at the time of this writing. Example CURL command: `curl -i http://127.0.0.1:8080/api/v1.0/faa-database`
 
@@ -35,9 +35,9 @@ In order to update the application itself use the following steps:
 * If the application is running issue a `docker-compose down`
 * Run `git pull`
 * Run `docker-compose up --build`
-  
+
 ### Starting and stopping
-In order to start or stop the application run one of the following after `cd`int into the repo:
+In order to start or stop the application run one of the following after `cd` into the repo:
 * Starting: `docker-compse up`
 * Stopping: `docker-compse down`
 
