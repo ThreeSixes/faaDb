@@ -18,6 +18,7 @@ This software is a Python application backed by MongoDB which can be used to que
 * Python 3.7.8 - Python version the code was written in
 * Flask - Python-based web server package
 * MongoDB - Database engine
+* Pandas - Open source data manipulation and analysis tool
 * Pipenv - Dependency management and Python environment for local development
 * Pyenv - Python version manager for development
 
