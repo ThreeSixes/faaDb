@@ -77,6 +77,7 @@ All API requests are normalized so they can be case insensitive.
 * This project is already set up and running. See `Prerequisites, Set-up, and basic operations` in this README.
 * [CURL](https://curl.haxx.se/download.html) is installed.
 * [jq](https://stedolan.github.io/jq/download/) is installed.
+
 Given an aircraft tail number of `N287AK`, ICAO hex address (`A2E806`), or integer address (`50564006`), we can look up aircraft information. These examples use `jq` to make the returned JSON data more human-friendly.
 Query by tail number:
 
