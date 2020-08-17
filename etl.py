@@ -147,7 +147,7 @@ class FaaDbETL:
 
         # We don't need the merge columns anymore.
         self.print_log("Drop columns used to merge datasets...")
-        record_frame.drop(["eng_code", "eng-mfr-mdl", "mfr-mdl-code"], axis=1, inplace=True)
+        record_frame.drop(["acft_code", "eng_code", "eng-mfr-mdl", "mfr-mdl-code"], axis=1, inplace=True)
 
         if self.__clean_up:
             self.print_log("Clean up triggered.")
